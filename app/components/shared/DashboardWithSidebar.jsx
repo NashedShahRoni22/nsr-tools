@@ -210,7 +210,7 @@ export default function DashboardWithSidebar({ children }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
               <Clock size={16} className="text-gray-600" />
               <div className="text-sm">
