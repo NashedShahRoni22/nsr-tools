@@ -74,7 +74,7 @@ const features = [
     name: "URL Shortener",
     icon: Link2,
     color: "text-cyan-600",
-    path: "/url-shortener",
+    path: "/shortener",
   },
   {
     id: "timer",

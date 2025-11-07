@@ -1,19 +1,29 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { Link2, Copy, Check, Trash2, ExternalLink, BarChart3, Calendar, Eye } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  Link2,
+  Copy,
+  Check,
+  Trash2,
+  ExternalLink,
+  BarChart3,
+  Calendar,
+  Eye,
+} from "lucide-react";
 
 export default function URLShortener() {
   const [urls, setUrls] = useState([]);
-  const [longUrl, setLongUrl] = useState('');
-  const [customAlias, setCustomAlias] = useState('');
+  const [longUrl, setLongUrl] = useState("");
+  const [customAlias, setCustomAlias] = useState("");
   const [copiedId, setCopiedId] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [baseUrl, setBaseUrl] = useState("");
 
-  const baseUrl = window.location.origin + '/';
-
-  // Load URLs from localStorage on mount
+  // Initialize baseUrl and load URLs from localStorage on mount
   useEffect(() => {
-    const savedUrls = localStorage.getItem('shortenedUrls');
+    setBaseUrl(window.location.origin + "/");
+
+    const savedUrls = localStorage.getItem("shortenedUrls");
     if (savedUrls) {
       setUrls(JSON.parse(savedUrls));
     }
@@ -21,12 +31,13 @@ export default function URLShortener() {
 
   // Save URLs to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem('shortenedUrls', JSON.stringify(urls));
+    localStorage.setItem("shortenedUrls", JSON.stringify(urls));
   }, [urls]);
 
   const generateShortCode = () => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let code = '';
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let code = "";
     for (let i = 0; i < 6; i++) {
       code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
@@ -44,20 +55,20 @@ export default function URLShortener() {
 
   const shortenUrl = () => {
     if (!longUrl.trim()) {
-      alert('Please enter a URL');
+      alert("Please enter a URL");
       return;
     }
 
     if (!isValidUrl(longUrl)) {
-      alert('Please enter a valid URL (including http:// or https://)');
+      alert("Please enter a valid URL (including http:// or https://)");
       return;
     }
 
     let shortCode = customAlias.trim() || generateShortCode();
-    
+
     // Check if alias already exists
-    if (urls.some(url => url.shortCode === shortCode)) {
-      alert('This custom alias is already taken. Please choose another one.');
+    if (urls.some((url) => url.shortCode === shortCode)) {
+      alert("This custom alias is already taken. Please choose another one.");
       return;
     }
 
@@ -71,12 +82,12 @@ export default function URLShortener() {
     };
 
     setUrls([newUrl, ...urls]);
-    setLongUrl('');
-    setCustomAlias('');
+    setLongUrl("");
+    setCustomAlias("");
   };
 
   const deleteUrl = (id) => {
-    setUrls(urls.filter(url => url.id !== id));
+    setUrls(urls.filter((url) => url.id !== id));
   };
 
   const copyToClipboard = (text, id) => {
@@ -87,14 +98,17 @@ export default function URLShortener() {
   };
 
   const incrementClicks = (id) => {
-    setUrls(urls.map(url =>
-      url.id === id ? { ...url, clicks: url.clicks + 1 } : url
-    ));
+    setUrls(
+      urls.map((url) =>
+        url.id === id ? { ...url, clicks: url.clicks + 1 } : url
+      )
+    );
   };
 
-  const filteredUrls = urls.filter(url =>
-    url.longUrl.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    url.shortCode.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredUrls = urls.filter(
+    (url) =>
+      url.longUrl.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      url.shortCode.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const totalClicks = urls.reduce((sum, url) => sum + url.clicks, 0);
@@ -108,17 +122,23 @@ export default function URLShortener() {
             <Link2 size={40} className="text-blue-600" />
             <h1 className="text-4xl font-bold text-gray-800">URL Shortener</h1>
           </div>
-          <p className="text-gray-600">Create short, memorable links in seconds</p>
+          <p className="text-gray-600">
+            Create short, memorable links in seconds
+          </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-            <div className="text-2xl font-bold text-blue-600">{urls.length}</div>
+            <div className="text-2xl font-bold text-blue-600">
+              {urls.length}
+            </div>
             <div className="text-sm text-gray-600">Short Links</div>
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-            <div className="text-2xl font-bold text-green-600">{totalClicks}</div>
+            <div className="text-2xl font-bold text-green-600">
+              {totalClicks}
+            </div>
             <div className="text-sm text-gray-600">Total Clicks</div>
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center col-span-2 md:col-span-1">
@@ -131,7 +151,9 @@ export default function URLShortener() {
 
         {/* URL Shortener Form */}
         <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mb-6">
-          <h2 className="text-xl font-semibold mb-4 text-gray-800">Shorten a Long URL</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-800">
+            Shorten a Long URL
+          </h2>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-700">
@@ -141,7 +163,7 @@ export default function URLShortener() {
                 type="url"
                 value={longUrl}
                 onChange={(e) => setLongUrl(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && shortenUrl()}
+                onKeyPress={(e) => e.key === "Enter" && shortenUrl()}
                 placeholder="https://example.com/very/long/url/that/needs/shortening"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
@@ -157,14 +179,19 @@ export default function URLShortener() {
                 <input
                   type="text"
                   value={customAlias}
-                  onChange={(e) => setCustomAlias(e.target.value.replace(/[^a-zA-Z0-9-_]/g, ''))}
+                  onChange={(e) =>
+                    setCustomAlias(
+                      e.target.value.replace(/[^a-zA-Z0-9-_]/g, "")
+                    )
+                  }
                   placeholder="my-custom-link"
                   className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"
                   maxLength={20}
                 />
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                Leave empty for auto-generated code. Only letters, numbers, hyphens, and underscores allowed.
+                Leave empty for auto-generated code. Only letters, numbers,
+                hyphens, and underscores allowed.
               </p>
             </div>
             <button
@@ -196,12 +223,12 @@ export default function URLShortener() {
             <div className="bg-white p-12 rounded-xl shadow-sm border border-gray-100 text-center">
               <div className="text-6xl mb-4">🔗</div>
               <p className="text-gray-500 text-lg">
-                {urls.length === 0 ? 'No shortened URLs yet' : 'No links found'}
+                {urls.length === 0 ? "No shortened URLs yet" : "No links found"}
               </p>
               <p className="text-gray-400 text-sm mt-2">
                 {urls.length === 0
-                  ? 'Create your first short link above'
-                  : 'Try a different search term'}
+                  ? "Create your first short link above"
+                  : "Try a different search term"}
               </p>
             </div>
           ) : (
@@ -229,7 +256,9 @@ export default function URLShortener() {
                             {url.shortUrl}
                           </a>
                           <button
-                            onClick={() => copyToClipboard(url.shortUrl, url.id)}
+                            onClick={() =>
+                              copyToClipboard(url.shortUrl, url.id)
+                            }
                             className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
                             title="Copy to clipboard"
                           >
@@ -246,7 +275,10 @@ export default function URLShortener() {
                     {/* Long URL */}
                     <div className="bg-gray-50 p-3 rounded-lg mb-3">
                       <div className="flex items-start gap-2">
-                        <ExternalLink size={16} className="text-gray-400 mt-1 flex-shrink-0" />
+                        <ExternalLink
+                          size={16}
+                          className="text-gray-400 mt-1 flex-shrink-0"
+                        />
                         <a
                           href={url.longUrl}
                           target="_blank"

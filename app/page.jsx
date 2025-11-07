@@ -23,7 +23,7 @@ const features = [
 //   { id: 'calculator', name: 'Calculator', icon: Calculator, color: 'text-red-600', path: '/calculator', description: 'Perform quick calculations and conversions' },
 //   { id: 'image-tools', name: 'Image Tools', icon: Image, color: 'text-pink-600', path: '/image-tools', description: 'Resize, compress, and edit images online' },
 //   { id: 'calendar', name: 'Calendar', icon: Calendar, color: 'text-indigo-600', path: '/calendar', description: 'Manage your schedule and appointments' },
-  { id: 'url-shortener', name: 'URL Shortener', icon: Link2, color: 'text-cyan-600', path: '/url-shortener', description: 'Create short, shareable links instantly' },
+  { id: 'url-shortener', name: 'URL Shortener', icon: Link2, color: 'text-cyan-600', path: '/shortener', description: 'Create short, shareable links instantly' },
   { id: 'timer', name: 'Timer & Stopwatch', icon: Clock, color: 'text-yellow-600', path: '/timer', description: 'Track time with timer and stopwatch features' },
   { id: 'expense', name: 'Expense Tracker', icon: CreditCard, color: 'text-emerald-600', path: '/expense-tracker', description: 'Keep track of your expenses and budget' },
   { id: 'spreadsheet', name: 'Mini Spreadsheet', icon: FileSpreadsheet, color: 'text-violet-600', path: '/spreadsheet', description: 'Create simple spreadsheets for quick data' },
