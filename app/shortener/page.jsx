@@ -116,17 +116,6 @@ export default function URLShortener() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 p-4 md:p-8">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Link2 size={40} className="text-blue-600" />
-            <h1 className="text-4xl font-bold text-gray-800">URL Shortener</h1>
-          </div>
-          <p className="text-gray-600">
-            Create short, memorable links in seconds
-          </p>
-        </div>
-
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
@@ -172,7 +161,7 @@ export default function URLShortener() {
               <label className="block text-sm font-medium mb-2 text-gray-700">
                 Custom Alias (Optional)
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-2">
                 <span className="flex items-center px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 font-mono text-sm">
                   {baseUrl}
                 </span>

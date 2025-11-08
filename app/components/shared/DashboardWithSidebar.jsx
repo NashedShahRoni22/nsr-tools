@@ -95,12 +95,12 @@ const features = [
     name: "Mini Spreadsheet",
     icon: FileSpreadsheet,
     color: "text-violet-600",
-    path: "/coming-soon",
+    path: "/spreadsheet",
   },
 ];
 
 export default function DashboardWithSidebar({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 
   const currentFeature =

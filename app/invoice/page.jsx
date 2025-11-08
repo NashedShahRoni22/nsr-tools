@@ -130,7 +130,7 @@ export default function InvoiceGenerator() {
   return (
     <div className="min-h-screen bg-gray-50 p-8 print:p-0 print:bg-white">
       <div className="flex justify-between items-center mb-6 print:hidden">
-        <h1 className="text-3xl font-bold text-gray-800">NSR Invoice</h1>
+        <h1 className="text-xl md:text-3xl font-bold text-gray-800">NSR Invoice</h1>
         <button
           onClick={exportToPDF}
           className="cursor-pointer flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
@@ -241,7 +241,7 @@ export default function InvoiceGenerator() {
             <h2 className="text-xl font-semibold mb-4">Items</h2>
             <div className="space-y-3">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-2">
+                <div key={item.id} className="flex flex-col md:flex-row gap-2">
                   <input
                     type="text"
                     placeholder="Product Name"
@@ -258,7 +258,7 @@ export default function InvoiceGenerator() {
                     onChange={(e) =>
                       updateItem(item.id, "quantity", e.target.value)
                     }
-                    className="w-20 px-3 py-2 border rounded-lg text-sm"
+                    className="md:w-20 px-3 py-2 border rounded-lg text-sm"
                   />
                   <input
                     type="number"
@@ -267,7 +267,7 @@ export default function InvoiceGenerator() {
                     onChange={(e) =>
                       updateItem(item.id, "unitPrice", e.target.value)
                     }
-                    className="w-24 px-3 py-2 border rounded-lg text-sm"
+                    className="md:w-24 px-3 py-2 border rounded-lg text-sm"
                   />
                   <button
                     onClick={() => removeItem(item.id)}
