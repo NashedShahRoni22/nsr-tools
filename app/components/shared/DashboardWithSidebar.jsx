@@ -17,6 +17,7 @@ import {
   Clock,
   CreditCard,
   FileSpreadsheet,
+  Utensils,
 } from "lucide-react";
 
 const features = [
@@ -47,6 +48,13 @@ const features = [
     icon: CheckSquare,
     color: "text-orange-600",
     path: "/task-manager",
+  },
+  {
+    id: "meal-manager",
+    name: "Meal Manager",
+    icon: Utensils,
+    color: "text-green-600",
+    path: "/meal-manager",
   },
   // {
   //   id: "calculator",

@@ -13,13 +13,15 @@ import {
   Link2,
   Clock,
   CreditCard,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Utensils
 } from 'lucide-react';
 
 const features = [
   { id: 'invoice', name: 'Invoice Generator', icon: FileText, color: 'text-green-600', path: '/invoice', description: 'Create professional invoices quickly and easily' },
   { id: 'qr', name: 'QR Code Generator', icon: QrCode, color: 'text-purple-600', path: '/qr-code', description: 'Generate QR codes for URLs, text, and more' },
   { id: 'task', name: 'Task Manager', icon: CheckSquare, color: 'text-orange-600', path: '/task-manager', description: 'Organize and track your daily tasks efficiently' },
+  { id: 'meal-manager', name: 'Meal Manager', icon: Utensils, color: 'text-green-600', path: '/meal-manager', description: 'Track meals, bazar and balance efficiently' },
 //   { id: 'calculator', name: 'Calculator', icon: Calculator, color: 'text-red-600', path: '/calculator', description: 'Perform quick calculations and conversions' },
 //   { id: 'image-tools', name: 'Image Tools', icon: Image, color: 'text-pink-600', path: '/image-tools', description: 'Resize, compress, and edit images online' },
 //   { id: 'calendar', name: 'Calendar', icon: Calendar, color: 'text-indigo-600', path: '/calendar', description: 'Manage your schedule and appointments' },
@@ -86,17 +88,17 @@ export default function DashboardHome() {
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <Link href={"/qr-code"} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Most Used</p>
-              <p className="text-lg font-semibold text-gray-800">Invoice Generator</p>
+              <p className="text-sm text-gray-600 mb-1">Most Use</p>
+              <p className="text-lg font-semibold text-gray-800">QR Code Scanner</p>
             </div>
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-              <FileText size={24} className="text-green-600" />
+              <QrCode size={24} className="text-green-600" />
             </div>
           </div>
-        </div>
+        </Link>
         
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
